@@ -77,7 +77,6 @@ Result SetAdptArrayAt(PAdptArray adt, int index, PElement element){
 
     if(element != NULL) {
         adt->items[index] = adt->copyFunc(element);
-        adt->capacity = index + 1;
     }
     return SUCCESS;
 }
@@ -87,9 +86,6 @@ Result SetAdptArrayAt(PAdptArray adt, int index, PElement element){
 PElement GetAdptArrayAt(PAdptArray adt, int index) {
     if(adt == NULL || index < 0 || adt->items == NULL) return NULL;
     if(index >= adt->capacity){
-        PElement* newArray = resizeAdptArray(adt,index+1);
-        if(newArray == NULL) return NULL;
-        adt->items = newArray;
         return NULL;
     }
     if(adt->items[index] == NULL) return NULL;
